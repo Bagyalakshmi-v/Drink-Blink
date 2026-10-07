@@ -1,0 +1,77 @@
+{
+  "name": "drink-and-blink",
+  "displayName": "Drink & Blink",
+  "description": "Stay hydrated. Rest your eyes. Keep coding. An animated buddy reminds you to drink water, and blinking eyes remind you to blink and take eye breaks.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://example.invalid/drink-and-blink" },
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "panel": [
+        { "id": "drinkBlinkPanel", "title": "Drink & Blink", "icon": "media/eye.svg" }
+      ]
+    },
+    "views": {
+      "drinkBlinkPanel": [
+        { "type": "webview", "id": "drinkBlink.eyeView", "name": "Blink" }
+      ]
+    },
+    "commands": [
+      { "command": "drinkBlink.showNow", "title": "Drink & Blink: Remind Me Now" },
+      { "command": "drinkBlink.togglePause", "title": "Drink & Blink: Pause / Resume" },
+      { "command": "drinkBlink.resetCount", "title": "Drink & Blink: Reset Today's Count" },
+      { "command": "drinkBlink.eyeTip", "title": "Drink & Blink: Eye-Care Tip" }
+    ],
+    "configuration": {
+      "title": "Drink & Blink",
+      "properties": {
+        "drinkBlink.intervalMinutes": {
+          "type": "number",
+          "default": 45,
+          "minimum": 1,
+          "description": "Minutes between reminders."
+        },
+        "drinkBlink.snoozeMinutes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "description": "Minutes to wait when you press Snooze."
+        },
+        "drinkBlink.dailyGoal": {
+          "type": "number",
+          "default": 8,
+          "minimum": 1,
+          "description": "Glasses of water you aim for each day."
+        },
+        "drinkBlink.blinkEye": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a blinking eye in the status bar to remind you to blink."
+        },
+        "drinkBlink.blinkEverySeconds": {
+          "type": "number",
+          "default": 4,
+          "minimum": 1,
+          "description": "How often the status-bar eye blinks (seconds)."
+        },
+        "drinkBlink.messages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            "Hey! Time to drink some water 💧",
+            "Pause for a sec — grab a glass of water 🥤",
+            "Your brain is 75% water. Top it up! 🧠💧",
+            "Hydration check! Have a few sips 😊",
+            "Code runs better when you're hydrated 💻💧"
+          ],
+          "description": "Messages your buddy says (one is picked at random)."
+        }
+      }
+    }
+  }
+}
